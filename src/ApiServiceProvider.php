@@ -1,10 +1,10 @@
 <?php
 
-namespace VendorName\Skeleton;
+namespace Seatplus\Api;
 
 use Illuminate\Support\ServiceProvider;
 
-class SkeletonServiceProvider extends ServiceProvider
+class ApiServiceProvider extends ServiceProvider
 {
     /**
      * Register bindings in the container.

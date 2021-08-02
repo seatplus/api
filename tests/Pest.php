@@ -12,7 +12,7 @@
 */
 
 
-use VendorName\Skeleton\Tests\TestCase;
+use Seatplus\Api\Tests\TestCase;
 
 uses(TestCase::class)
     ->group('integration')

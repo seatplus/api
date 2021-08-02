@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Tests;
+namespace Seatplus\Api\Tests;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Seatplus\Auth\AuthenticationServiceProvider;
 use Seatplus\Auth\Models\User;
-use VendorName\Skeleton\SkeletonServiceProvider;
+use Seatplus\Api\ApiServiceProvider;
 
 class TestCase extends Orchestra
 {
@@ -15,14 +15,14 @@ class TestCase extends Orchestra
         parent::setUp();
 
         Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'VendorName\\Skeleton\\Database\\Factories\\'.class_basename($modelName).'Factory'
+            fn (string $modelName) => 'Seatplus\\Api\\Database\\Factories\\'.class_basename($modelName).'Factory'
         );
     }
 
     protected function getPackageProviders($app)
     {
         return [
-            SkeletonServiceProvider::class,
+            ApiServiceProvider::class,
             AuthenticationServiceProvider::class,
         ];
     }

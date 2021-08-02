@@ -1,6 +1,6 @@
 <?php
 
-namespace VendorName\Skeleton\Tests;
+namespace Seatplus\Api\Tests;
 
 class ExampleTest extends TestCase
 {

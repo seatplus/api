@@ -1,25 +1,24 @@
 {
-    "name": "vendor_slug/package_slug",
-    "description": ":package_description",
+    "name": "seatplus/api",
+    "description": "Package to consume seatplus data trough an api",
     "keywords": [
-        ":vendor_name",
+        "seatplus",
         "laravel",
-        "package_slug"
+        "api"
     ],
-    "homepage": "https://github.com/vendor_slug/package_slug",
+    "homepage": "https://github.com/seatplus/api",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "Felix Huber",
+            "email": "felix.a.huber@gmx.net",
             "role": "Developer"
         }
     ],
     "require": {
         "php": "^8.0",
-        "seatplus/core": "^0.3",
-        "illuminate/contracts": "^8.37",
-      "seatplus/auth": "^0.8"
+        "laravel/sanctum": "^2.11",
+        "seatplus/web": "*"
     },
     "require-dev": {
         "nunomaduro/collision": "^5.3",
@@ -28,13 +27,13 @@
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories"
+            "Seatplus\\Api\\": "src",
+            "Seatplus\\Api\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests"
+            "Seatplus\\Api\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -47,7 +46,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
+                "Seatplus\\Api\\ApiServiceProvider"
             ]
         }
     },
