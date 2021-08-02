@@ -4,9 +4,9 @@ namespace Seatplus\Api\Tests;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
+use Seatplus\Api\ApiServiceProvider;
 use Seatplus\Auth\AuthenticationServiceProvider;
 use Seatplus\Auth\Models\User;
-use Seatplus\Api\ApiServiceProvider;
 
 class TestCase extends Orchestra
 {
