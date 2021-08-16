@@ -3,6 +3,8 @@
 namespace Seatplus\Api;
 
 use Illuminate\Support\ServiceProvider;
+use Seatplus\Api\Http\Middleware\TokenAbilityCheck;
+use Seatplus\Web\Http\Middleware\CheckPermissionAffiliation;
 
 class ApiServiceProvider extends ServiceProvider
 {
@@ -17,10 +19,13 @@ class ApiServiceProvider extends ServiceProvider
         $this->addPublications();
 
         // Add routes
-        /*$this->loadRoutesFrom(__DIR__ . '/Http/routes.php');*/
+        $this->loadRoutesFrom(__DIR__ . '/../routes/api.php');
 
         //Add Migrations
         $this->loadMigrationsFrom(__DIR__ . '/../database/migrations/');
+
+        // Add Middlewares
+        $this->addMiddleware();
 
         // Add translations
         //$this->loadTranslationsFrom(__DIR__ . '/resources/lang', 'web');
@@ -34,6 +39,12 @@ class ApiServiceProvider extends ServiceProvider
     private function mergeConfigurations()
     {
 
+
+        $this->mergeConfigFrom(
+            __DIR__ . '/../config/api.sidebar.php',
+            'package.sidebar'
+        );
+
         /*$this->mergeConfigFrom(
             __DIR__ . '/config/package.permissions.php', 'web.permissions'
         );*/
@@ -43,11 +54,20 @@ class ApiServiceProvider extends ServiceProvider
     {
         /*
          * to publish assets one can run:
-         * php artisan vendor:publish --tag=srp --force
+         * php artisan vendor:publish --tag=web --force
          * or use Laravel Mix to copy the folder to public repo of core.
          */
-        /*$this->publishes([
-            __DIR__ . '/resources/js' => resource_path('js'),
-        ], 'srp');*/
+        $this->publishes([
+            __DIR__ . '/../resources/js' => resource_path('js'),
+        ], 'web');
+    }
+
+    private function addMiddleware()
+    {
+        $router = $this->app['router'];
+
+        $router->aliasMiddleware('api-permission', CheckPermissionAffiliation::class);
+
+        $router->aliasMiddleware('token-ability-check', TokenAbilityCheck::class);
     }
 }
