@@ -3,7 +3,6 @@
 
 namespace Seatplus\Api\Http\Controllers;
 
-
 use Illuminate\Http\Request;
 use Seatplus\Api\Models\ApiUser;
 
@@ -15,13 +14,12 @@ class TokenController
 
         return inertia('Api/Index', [
             'tokens' => ApiUser::find($user->getAuthIdentifier())->tokens,
-            'permissions' => $user->getAllPermissions()->map(fn($permission) => $permission->name),
+            'permissions' => $user->getAllPermissions()->map(fn ($permission) => $permission->name),
         ]);
     }
 
     public function create(Request $request)
     {
-
         $validated_data = $request->validate([
             'token_name' => ['required', 'string'],
             'abilities' => ['required', 'array'],
@@ -37,7 +35,7 @@ class TokenController
 
         return inertia('Api/Index', [
             'tokens' => $tokens,
-            'plainTextToken' => $token->plainTextToken
+            'plainTextToken' => $token->plainTextToken,
         ]);
     }
 
@@ -48,5 +46,4 @@ class TokenController
             ->where('id', $tokenId)
             ->delete();
     }
-
 }

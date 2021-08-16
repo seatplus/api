@@ -3,7 +3,6 @@
 
 namespace Seatplus\Api\Http\Resources\V1;
 
-
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class WalletJournal extends JsonResource
@@ -28,5 +27,4 @@ class WalletJournal extends JsonResource
             'tax_receiver_id' => $this->tax_receiver_id,
         ];
     }
-
 }

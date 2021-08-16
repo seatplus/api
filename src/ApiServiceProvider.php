@@ -38,8 +38,6 @@ class ApiServiceProvider extends ServiceProvider
 
     private function mergeConfigurations()
     {
-
-
         $this->mergeConfigFrom(
             __DIR__ . '/../config/api.sidebar.php',
             'package.sidebar'

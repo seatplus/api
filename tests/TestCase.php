@@ -46,7 +46,6 @@ class TestCase extends Orchestra
         $this->app->instance('path.public', __DIR__ .'/../vendor/seatplus/web/src/public');
 
         Permission::findOrCreate('superuser');
-
     }
 
     protected function getPackageProviders($app)
@@ -57,7 +56,7 @@ class TestCase extends Orchestra
             WebServiceProvider::class,
             EveapiServiceProvider::class,
             ServiceProvider::class,
-            SanctumServiceProvider::class
+            SanctumServiceProvider::class,
         ];
     }
 
@@ -87,7 +86,7 @@ class TestCase extends Orchestra
             config()->get('inertia.testing.page_paths', []),
             [
                 realpath(__DIR__ . '/../resources/js/Pages'),
-                realpath(__DIR__ . '/../resources/js/Shared')
+                realpath(__DIR__ . '/../resources/js/Shared'),
             ],
         ));
     }
