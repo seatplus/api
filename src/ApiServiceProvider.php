@@ -43,9 +43,9 @@ class ApiServiceProvider extends ServiceProvider
             'package.sidebar'
         );
 
-        /*$this->mergeConfigFrom(
-            __DIR__ . '/config/package.permissions.php', 'web.permissions'
-        );*/
+        $this->mergeConfigFrom(
+            __DIR__ . '/config/package.permissions.php', 'eveapi.permissions'
+        );
     }
 
     private function addPublications()
