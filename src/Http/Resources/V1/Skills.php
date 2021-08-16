@@ -3,7 +3,6 @@
 
 namespace Seatplus\Api\Http\Resources\V1;
 
-
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class Skills extends JsonResource
@@ -17,5 +16,4 @@ class Skills extends JsonResource
             'trained_skill_level' => $this->trained_skill_level,
         ];
     }
-
 }

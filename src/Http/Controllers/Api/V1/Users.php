@@ -3,9 +3,6 @@
 
 namespace Seatplus\Api\Http\Controllers\Api\V1;
 
-
-
-
 class Users
 {
     public function __invoke()
@@ -15,5 +12,4 @@ class Users
 
         return \Seatplus\Api\Http\Resources\V1\Users\User::collection($query->paginate());
     }
-
 }

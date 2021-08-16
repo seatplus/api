@@ -3,12 +3,10 @@
 
 namespace Seatplus\Api\Http\Controllers\Api\V1;
 
-
 use Seatplus\Eveapi\Models\Character\CorporationHistory as CorporationHistoryModel;
 
 class CorporationHistory
 {
-
     public function __invoke(int $character_id)
     {
         $query = CorporationHistoryModel::query()
@@ -16,5 +14,4 @@ class CorporationHistory
 
         return \Seatplus\Api\Http\Resources\V1\CorporationHistory::collection($query->paginate());
     }
-
 }

@@ -3,7 +3,6 @@
 
 namespace Seatplus\Api\Http\Controllers\Api\V1;
 
-
 use Seatplus\Api\Http\Resources\V1\Skills as SkillsResource;
 use Seatplus\Eveapi\Models\Skills\Skill;
 
@@ -16,5 +15,4 @@ class Skills
 
         return SkillsResource::collection($query->paginate());
     }
-
 }

@@ -3,7 +3,6 @@
 
 namespace Seatplus\Api\Http\Resources\V1\Users;
 
-
 class User extends \Illuminate\Http\Resources\Json\JsonResource
 {
     public function toArray($request)
@@ -14,5 +13,4 @@ class User extends \Illuminate\Http\Resources\Json\JsonResource
             'characters' => $this->characters,
         ];
     }
-
 }
