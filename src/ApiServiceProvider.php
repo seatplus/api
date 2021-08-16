@@ -44,7 +44,8 @@ class ApiServiceProvider extends ServiceProvider
         );
 
         $this->mergeConfigFrom(
-            __DIR__ . '/config/package.permissions.php', 'eveapi.permissions'
+            __DIR__ . '/config/package.permissions.php',
+            'eveapi.permissions'
         );
     }
 
