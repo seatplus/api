@@ -3,7 +3,6 @@
 
 namespace Seatplus\Api\Http\Controllers\Api\V1;
 
-
 use Seatplus\Auth\Models\User as UserModel;
 
 class User
