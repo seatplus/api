@@ -25,7 +25,7 @@ Route::prefix('api')
                     ->middleware('token-ability-check:API: can list and access users')
                     ->group(function () {
                         Route::get('', \Seatplus\Api\Http\Controllers\Api\V1\Users::class);
-                        Route::get('/{user}', \Seatplus\Api\Http\Controllers\Api\V1\User::class);
+                        Route::get('/{user_id}', \Seatplus\Api\Http\Controllers\Api\V1\User::class);
                     });
 
                 Route::prefix('characters/{character_id}')

@@ -14,7 +14,7 @@ test('/api/v1/users', function () {
 });
 
 test('/api/v1/users/1', function () {
-    $this->get('api/v1/users')->assertOk();
+    $this->get('api/v1/users/1')->assertOk();
 });
 
 test('/api/v1/characters/{character_id}/skills', function () {
