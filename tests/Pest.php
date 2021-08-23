@@ -12,6 +12,7 @@
 */
 
 
+use Pest\TestSuite;
 use Seatplus\Api\Tests\TestCase;
 
 uses(TestCase::class)
@@ -48,7 +49,12 @@ expect()->extend('toBeOne', function () {
 |
 */
 
-function something()
+function this(): TestCase
 {
-    // ..
+    return TestSuite::getInstance()->test;
+}
+
+function using($test): TestCase
+{
+    return $test;
 }

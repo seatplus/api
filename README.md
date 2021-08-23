@@ -5,59 +5,54 @@
 [![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/seatplus/api/Check%20&%20fix%20styling?label=code%20style)](https://github.com/seatplus/api/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/seatplus/api.svg?style=flat-square)](https://packagist.org/packages/seatplus/api)
 
----
-This repo can be used as to scaffold a Laravel package. Follow these steps to get started:
-
-1. Press the "Use template" button at the top of this repo to create a new repo with the contents of this api
-2. Run "./configure-api.sh" to run a script that will replace all placeholders throughout all the files
-3. Remove this block of text.
-4. Have fun creating your package.
-5. If you need help creating a package, consider picking up our <a href="https://laravelpackage.training">Laravel Package Training</a> video course.
----
-
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
-
-## Support us
-
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/api.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/api)
-
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
-
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
 
 ## Installation
 
-You can install the package via composer:
 
-```bash
-composer require seatplus/api
-```
-
-You can publish and run the migrations with:
-
-```bash
-php artisan vendor:publish --provider="Seatplus\Api\ApiServiceProvider" --tag="api-migrations"
-php artisan migrate
-```
-
-You can publish the config file with:
-```bash
-php artisan vendor:publish --provider="Seatplus\Api\ApiServiceProvider" --tag="api-config"
-```
-
-This is the contents of the published config file:
-
-```php
-return [
-];
-```
 
 ## Usage
 
+There are several ways of passing the API token to your application. We'll discuss each of these approaches while using the Guzzle HTTP library to demonstrate their usage. You may choose any of these approaches based on the needs of your application.
+
+### Query Strings
+
+Your application's API consumers may specify their token as an `api_token` query string value:
+
 ```php
-$api = new Seatplus\Api();
-echo $api->echoPhrase('Hello, Spatie!');
+$response = $client->request('GET', '/api/user?api_token='.$token);
 ```
+
+### Request Payload
+
+Your application's API consumers may include their API token in the request's form parameters as an `api_token`:
+
+```php
+$response = $client->request('POST', '/api/user', [
+    'headers' => [
+        'Accept' => 'application/json',
+    ],
+    'form_params' => [
+        'api_token' => $token,
+    ],
+]);
+```
+
+### Bearer Token
+
+Your application's API consumers may provide their API token as a `Bearer` token in the `Authorization` header of the request:
+
+```php
+$response = $client->request('POST', '/api/user', [
+    'headers' => [
+        'Authorization' => 'Bearer '.$token,
+        'Accept' => 'application/json',
+    ],
+]);
+```
+
+## Documentation
+
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/13012975-234f6f65-12e0-4d5b-ae35-a6e0d17ffc91?action=collection%2Ffork&collection-url=entityId%3D13012975-234f6f65-12e0-4d5b-ae35-a6e0d17ffc91%26entityType%3Dcollection%26workspaceId%3D99c4cf22-1a90-4315-91cf-3899990b05c7)
 
 ## Testing
 

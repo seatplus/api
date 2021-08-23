@@ -3,20 +3,49 @@
 namespace Seatplus\Api\Tests;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Queue;
+use Inertia\Inertia;
+use Inertia\ServiceProvider;
+use Laravel\Sanctum\SanctumServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Seatplus\Api\ApiServiceProvider;
+use Seatplus\Api\Tests\Stubs\Kernel;
 use Seatplus\Auth\AuthenticationServiceProvider;
+use Seatplus\Auth\Models\Permissions\Permission;
 use Seatplus\Auth\Models\User;
+use Seatplus\Eveapi\EveapiServiceProvider;
+use Seatplus\Web\WebServiceProvider;
 
 class TestCase extends Orchestra
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
         Factory::guessFactoryNamesUsing(
             fn (string $modelName) => 'Seatplus\\Api\\Database\\Factories\\'.class_basename($modelName).'Factory'
         );
+
+        //Setup Inertia Root View
+        Inertia::setRootView('web::app');
+
+        //Do not use the queue
+        Queue::fake();
+
+        // setup database
+        $this->setupDatabase($this->app);
+
+        /** @noinspection PhpFieldAssignmentTypeMismatchInspection */
+        $this->test_user = Event::fakeFor(function () {
+            return User::factory()->create();
+        });
+
+        $this->test_character = $this->test_user->characters->first();
+
+        $this->app->instance('path.public', __DIR__ .'/../vendor/seatplus/web/src/public');
+
+        Permission::findOrCreate('superuser');
     }
 
     protected function getPackageProviders($app)
@@ -24,6 +53,10 @@ class TestCase extends Orchestra
         return [
             ApiServiceProvider::class,
             AuthenticationServiceProvider::class,
+            WebServiceProvider::class,
+            EveapiServiceProvider::class,
+            ServiceProvider::class,
+            SanctumServiceProvider::class,
         ];
     }
 
@@ -49,13 +82,13 @@ class TestCase extends Orchestra
         $app['config']->set('cache.prefix', 'seatplus_tests---');
 
         //Setup Inertia for package development
-        /*config()->set('inertia.testing.page_paths', array_merge(
+        config()->set('inertia.testing.page_paths', array_merge(
             config()->get('inertia.testing.page_paths', []),
             [
-                realpath(__DIR__ . '/../src/resources/js/Pages'),
-                realpath(__DIR__ . '/../src/resources/js/Shared')
+                realpath(__DIR__ . '/../resources/js/Pages'),
+                realpath(__DIR__ . '/../resources/js/Shared'),
             ],
-        ));*/
+        ));
     }
 
     /**
@@ -66,7 +99,7 @@ class TestCase extends Orchestra
      */
     protected function resolveApplicationHttpKernel($app)
     {
-        //$app->singleton('Illuminate\Contracts\Http\Kernel', Kernel::class);
+        $app->singleton('Illuminate\Contracts\Http\Kernel', Kernel::class);
     }
 
     /**
