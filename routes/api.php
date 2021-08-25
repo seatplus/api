@@ -34,6 +34,7 @@ Route::prefix('api')
                         Route::get('wallet/journal', \Seatplus\Api\Http\Controllers\Api\V1\WalletJournal::class);
                         // Character Info
                         //Route::get('', null);
+                        // Contacts
                         Route::get('corporationhistory', \Seatplus\Api\Http\Controllers\Api\V1\CorporationHistory::class);
                     });
 
