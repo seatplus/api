@@ -42,3 +42,13 @@ test('/api/v1/characters/{character_id}/corporationhistory', function () {
 
     $this->get("/api/v1/characters/{$this->test_character->character_id}/corporationhistory")->assertOk();
 });
+
+test('/api/v1/characters/{character_id}/contacts', function () {
+    \Seatplus\Eveapi\Models\Contacts\Contact::factory()
+        ->create([
+            'contactable_id' => $this->test_character->character_id,
+            'contactable_type' => \Seatplus\Eveapi\Models\Character\CharacterInfo::class,
+        ]);
+
+    $this->get("/api/v1/characters/{$this->test_character->character_id}/contacts")->assertOk();
+});

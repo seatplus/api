@@ -9,7 +9,8 @@ class User
 {
     public function __invoke(int $user_id)
     {
-        $user = UserModel::query()->with('characters', 'main_character', 'main_character.balance')->find($user_id);
+
+        $user = UserModel::query()->with(['characters', 'main_character', 'main_character.balance'])->find($user_id);
 
         return \Seatplus\Api\Http\Resources\V1\Users\User::make($user);
     }
