@@ -3,7 +3,6 @@
 
 namespace Seatplus\Api\Http\Resources\V1;
 
-
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class Character extends JsonResource
@@ -19,5 +18,4 @@ class Character extends JsonResource
             'unallocated_sp' => $this->unallocated_sp,
         ];
     }
-
 }
