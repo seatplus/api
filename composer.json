@@ -18,7 +18,7 @@
     "require": {
         "php": "^8.0",
         "laravel/sanctum": "^2.11",
-        "seatplus/web": "0.8.17"
+        "seatplus/web": "^0.8.18"
     },
     "require-dev": {
         "nunomaduro/collision": "^5.3",
