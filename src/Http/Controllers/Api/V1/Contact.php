@@ -10,7 +10,6 @@ class Contact
 {
     public function __invoke(int $character_id)
     {
-
         $query = \Seatplus\Eveapi\Models\Contacts\Contact::query()
             ->whereHasMorph(
                 'contactable',
