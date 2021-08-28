@@ -10,7 +10,7 @@ class Balance extends JsonResource
     public function toArray($request)
     {
         return [
-            $this->balance
+            $this->balance,
         ];
     }
 }
