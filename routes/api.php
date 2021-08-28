@@ -32,8 +32,7 @@ Route::prefix('api')
                     ->group(function () {
                         Route::get('skills', \Seatplus\Api\Http\Controllers\Api\V1\Skills::class);
                         Route::get('wallet/journal', \Seatplus\Api\Http\Controllers\Api\V1\WalletJournal::class);
-                        // Character Info
-                        //Route::get('', null);
+                        Route::get('contacts', \Seatplus\Api\Http\Controllers\Api\V1\Contact::class);
                         Route::get('corporationhistory', \Seatplus\Api\Http\Controllers\Api\V1\CorporationHistory::class);
                     });
 
