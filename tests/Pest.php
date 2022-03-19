@@ -58,3 +58,8 @@ function using($test): TestCase
 {
     return $test;
 }
+
+function faker()
+{
+    return \Faker\Factory::create();
+}

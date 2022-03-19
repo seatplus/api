@@ -14,7 +14,10 @@ test('/api/v1/users', function () {
 });
 
 test('/api/v1/users/1', function () {
-    $this->get('api/v1/users/1')->assertOk();
+    expect(\Seatplus\Auth\Models\User::all())->toHaveCount(1);
+    $user_id = \Seatplus\Auth\Models\User::first()->id;
+
+    $this->get("api/v1/users/$user_id")->assertOk();
 });
 
 test('/api/v1/characters/{character_id}/skills', function () {
@@ -37,6 +40,7 @@ test('/api/v1/characters/{character_id}/wallet/journal', function () {
 test('/api/v1/characters/{character_id}/corporationhistory', function () {
     \Seatplus\Eveapi\Models\Character\CorporationHistory::factory()
         ->create([
+            'start_date' => faker()->dateTime,
             'character_id' => $this->test_character->character_id,
         ]);
 
