@@ -3,6 +3,7 @@
 namespace Seatplus\Api\Tests;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Queue;
 use Inertia\Inertia;
@@ -19,6 +20,9 @@ use Seatplus\Web\WebServiceProvider;
 
 class TestCase extends Orchestra
 {
+
+    use LazilyRefreshDatabase;
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -43,7 +47,7 @@ class TestCase extends Orchestra
 
         $this->test_character = $this->test_user->characters->first();
 
-        $this->app->instance('path.public', __DIR__ .'/../vendor/seatplus/web/src/public');
+        $this->app->instance('path.public', __DIR__ .'/Stubs');
 
         Permission::findOrCreate('superuser');
     }
@@ -62,19 +66,9 @@ class TestCase extends Orchestra
 
     public function getEnvironmentSetUp($app)
     {
-        config()->set('database.default', 'testing');
-
-        // Use memory SQLite, cleans it self up
-        $app['config']->set('database.default', 'testbench');
-        $app['config']->set('database.connections.testbench', [
-            'driver' => 'sqlite',
-            'database' => ':memory:',
-            'prefix' => '',
-        ]);
+        config()->set('database.default', 'mysql');
 
         config(['app.debug' => true]);
-
-        //$app['router']->aliasMiddleware('auth', Authenticate::class);
 
         // Use test User model for users provider
         $app['config']->set('auth.providers.users.model', User::class);
@@ -109,6 +103,6 @@ class TestCase extends Orchestra
     {
         // Path to our migrations to load
         //$this->loadMigrationsFrom(__DIR__ . '/database/migrations');
-        $this->artisan('migrate', ['--database' => 'testbench']);
+        $this->artisan('migrate');
     }
 }
