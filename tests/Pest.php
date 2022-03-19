@@ -59,6 +59,7 @@ function using($test): TestCase
     return $test;
 }
 
-function faker() {
+function faker()
+{
     return \Faker\Factory::create();
 }

@@ -1,6 +1,5 @@
 <?php
 
-use Inertia\Testing\Assert;
 use function Pest\Laravel\actingAs;
 use Seatplus\Auth\Models\Permissions\Permission;
 use Seatplus\Auth\Models\User;

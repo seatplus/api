@@ -20,7 +20,6 @@ use Seatplus\Web\WebServiceProvider;
 
 class TestCase extends Orchestra
 {
-
     use LazilyRefreshDatabase;
 
     protected function setUp(): void

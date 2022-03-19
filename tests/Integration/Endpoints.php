@@ -14,7 +14,6 @@ test('/api/v1/users', function () {
 });
 
 test('/api/v1/users/1', function () {
-
     expect(\Seatplus\Auth\Models\User::all())->toHaveCount(1);
     $user_id = \Seatplus\Auth\Models\User::first()->id;
 
