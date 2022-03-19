@@ -145,7 +145,7 @@ export default {
         })
 
         const submit = () => {
-            form.value.post(route('create.api.token'))
+            form.post(route('create.api.token'))
 
            /* axios.post(route('create.api.token'), {
                 token_name: token_name.value,

@@ -1,6 +1,5 @@
 <?php
 
-use Inertia\Testing\Assert;
 use function Pest\Laravel\actingAs;
 use Seatplus\Auth\Models\Permissions\Permission;
 use Seatplus\Auth\Models\User;
@@ -21,7 +20,7 @@ it('user got superuser rights', function () {
 
 it('user can access api view', function () {
     $response = actingAs($this->test_user)->get(route('api.index'))
-        ->assertInertia(fn (Assert $page) => $page
+        ->assertInertia(fn (\Inertia\Testing\AssertableInertia $page) => $page
             ->component('Api/Index'));
 });
 

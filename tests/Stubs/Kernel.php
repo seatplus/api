@@ -6,7 +6,7 @@ namespace Seatplus\Api\Tests\Stubs;
 use Orchestra\Testbench\Http\Middleware\RedirectIfAuthenticated;
 use Seatplus\Web\Http\Middleware\Authenticate;
 
-class Kernel extends \Orchestra\Testbench\Http\Kernel
+class Kernel extends \Orchestra\Testbench\Foundation\Http\Kernel
 {
     /**
      * The application's route middleware.
